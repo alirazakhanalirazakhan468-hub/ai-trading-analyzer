@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trading Analyzer</title>
 
-  <title>AI Trading Analyzer</title>
+<style>
+*{box-sizing:border-box}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#08111f;
+  color:white;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:20px;
+}
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px;
-    }
+h1{
+  text-align:center;
+  margin-bottom:8px;
+}
 
-    .header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+.subtitle{
+  text-align:center;
+  color:#9ca9bb;
+  margin-bottom:25px;
+}
 
-    .header h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.card{
+  background:#111d2e;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+}
 
-    .header p {
-      color: #94a3b8;
-    }
+input[type=file]{
+  width:100%;
+  padding:14px;
+  background:#1b293b;
+  color:white;
+  border-radius:10px;
+}
 
-    .card {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
+#preview{
+  width:100%;
+  max-height:450px;
+  object-fit:contain;
+  margin-top:15px;
+  border-radius:12px;
+  display:none;
+}
 
-    .upload-box {
-      border: 2px dashed #475569;
-      border-radius: 12px;
-      padding: 30px 15px;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+button{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+  border:0;
+  border-radius:10px;
+  background:#1683ff;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
 
-    input[type="file"] {
-      width: 100%;
-     
+button:disabled{
+  opacity:.5;
+}
+
+.result{
+  display:none;
+}
+
+.row{
+  display:flex
