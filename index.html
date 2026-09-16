@@ -2,79 +2,249 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AI Trading Analyzer</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#08111f;
-  color:white;
+  background:#07111f;
+  color:#fff;
 }
-
 .container{
-  max-width:650px;
+  max-width:700px;
   margin:auto;
-  padding:20px;
+  padding:25px 16px;
 }
-
 h1{
   text-align:center;
   margin-bottom:8px;
 }
-
 .subtitle{
   text-align:center;
-  color:#9ca9bb;
+  color:#9fb0c5;
   margin-bottom:25px;
 }
-
 .card{
-  background:#111d2e;
+  background:#101d2d;
+  border:1px solid #24364d;
   border-radius:16px;
   padding:20px;
   margin-bottom:18px;
 }
-
+label{
+  display:block;
+  margin-bottom:10px;
+  font-weight:bold;
+}
 input[type=file]{
   width:100%;
-  padding:14px;
-  background:#1b293b;
-  color:white;
+  padding:12px;
+  background:#17283d;
+  color:#fff;
   border-radius:10px;
 }
-
 #preview{
+  display:none;
   width:100%;
   max-height:450px;
   object-fit:contain;
   margin-top:15px;
   border-radius:12px;
-  display:none;
 }
-
 button{
   width:100%;
   padding:15px;
   margin-top:15px;
   border:0;
   border-radius:10px;
-  background:#1683ff;
+  background:#18a96b;
   color:white;
   font-size:17px;
   font-weight:bold;
 }
-
 button:disabled{
-  opacity:.5;
+  background:#425469;
 }
-
 .result{
   display:none;
 }
-
 .row{
-  display:flex
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 0;
+  border-bottom:1px solid #26384d;
+}
+.value{
+  font-weight:bold;
+  text-align:right;
+}
+.warning{
+  margin-top:18px;
+  padding:12px;
+  background:#2a2414;
+  color:#ffd76a;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.5;
+}
+.footer{
+  text-align:center;
+  color:#71839a;
+  font-size:12px;
+  margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 AI Trading Analyzer</h1>
+<div class="subtitle">
+Upload a trading chart and analyze the setup
+</div>
+
+<div class="card">
+
+<label>Select Chart Image</label>
+
+<input
+  type="file"
+  id="chartInput"
+  accept="image/*"
+>
+
+<img id="preview">
+
+<button id="analyzeBtn" onclick="analyzeChart()" disabled>
+Analyze Chart
+</button>
+
+</div>
+
+<div class="card result" id="result">
+
+<h2>📈 Analysis Report</h2>
+
+<div class="row">
+<span>Trend</span>
+<span class="value" id="trend">-</span>
+</div>
+
+<div class="row">
+<span>Entry Zone</span>
+<span class="value" id="entry">-</span>
+</div>
+
+<div class="row">
+<span>Stop Loss</span>
+<span class="value" id="sl">-</span>
+</div>
+
+<div class="row">
+<span>Target 1</span>
+<span class="value" id="tp1">-</span>
+</div>
+
+<div class="row">
+<span>Target 2</span>
+<span class="value" id="tp2">-</span>
+</div>
+
+<div class="row">
+<span>Target 3</span>
+<span class="value" id="tp3">-</span>
+</div>
+
+<div class="row">
+<span>Risk / Reward</span>
+<span class="value" id="rr">-</span>
+</div>
+
+<div class="warning">
+⚠️ This analysis is for educational purposes only.
+Trading involves risk. Always verify the setup yourself
+before taking any trade.
+</div>
+
+</div>
+
+<div class="footer">
+AI Trading Analyzer • Crypto • Forex • NSE • BSE
+</div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("chartInput");
+const preview = document.getElementById("preview");
+const button = document.getElementById("analyzeBtn");
+
+input.addEventListener("change", function(){
+
+  const file = this.files[0];
+
+  if(!file){
+    button.disabled = true;
+    preview.style.display = "none";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+    preview.src = e.target.result;
+    preview.style.display = "block";
+    button.disabled = false;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+function analyzeChart(){
+
+  button.disabled = true;
+  button.innerText = "Analyzing...";
+
+  setTimeout(function(){
+
+    document.getElementById("trend").innerText =
+      "Bullish";
+
+    document.getElementById("entry").innerText =
+      "Support Zone";
+
+    document.getElementById("sl").innerText =
+      "Below Support";
+
+    document.getElementById("tp1").innerText =
+      "Target 1";
+
+    document.getElementById("tp2").innerText =
+      "Target 2";
+
+    document.getElementById("tp3").innerText =
+      "Target 3";
+
+    document.getElementById("rr").innerText =
+      "1 : 2";
+
+    document.getElementById("result").style.display = "block";
+
+    button.disabled = false;
+    button.innerText = "Analyze Chart";
+
+  },1200);
+
+}
+
+</script>
+
+</body>
+  </html>
